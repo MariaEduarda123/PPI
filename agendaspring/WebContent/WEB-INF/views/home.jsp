@@ -7,6 +7,6 @@
 <title>Bem vindo a aplicação Spring</title>
 </head>
 <body>
-
+ <h1>Bem vindo a aplicação Spring</h1>
 </body>
 </html>
