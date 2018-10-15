@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
 	@RequestMapping("/")
-	public void homeSeiLa() {
-		System.out.println("Chamou o método da home! #elenão");
+	public String homeSeiLa() {
+		System.out.println("Chamou o método da home!");
+		return "home";
 	}
 	
 }

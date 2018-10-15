@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bem vindo a aplicação Spring</title>
+<title>Contato Inserido</title>
 </head>
 <body>
- <h1>Bem vindo a aplicação Spring!</h1>
+	<h1>Contato criado!</h1>
 </body>
 </html>

@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bem vindo a aplicação Spring</title>
+<title>Adicionar Contatos</title>
 </head>
 <body>
- <h1>Bem vindo a aplicação Spring!</h1>
+	<h1>Adicionar contato:</h1>
+	<form action ="/agendaspring/contatos">
+		Nome: <input type="text" name="nome">
+		Email: <input type="text" name="email">
+		Endereço: <input type="text" name="endereco">
+		<button type="submit">Adicionar</button>
+	</form>
 </body>
 </html>
