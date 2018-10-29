@@ -21,10 +21,11 @@ public class ContatoDAO {
 
 	public boolean inserir(Contato contato) {
 
-		String sql = "insert into Contato (nome, email, endereco, dataNascimento) values (?, ?, ?, ?);";
+		String sql = "insert into contatos (nome, email, endereco, dataNascimento) values (?, ?, ?, ?);";
 
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
+
 			stmt.setString(1, contato.getNome());
 			stmt.setString(2, contato.getEmail());
 			stmt.setString(3, contato.getEndereco());
@@ -35,7 +36,6 @@ public class ContatoDAO {
 			stmt.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -47,23 +47,23 @@ public class ContatoDAO {
 		List<Contato> result = new ArrayList<>();
 
 		try {
-			PreparedStatement stmt = this.connection.prepareStatement("select * from Contato;");
+			PreparedStatement stmt = this.connection.prepareStatement("select * from contatos;");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				// criando o objeto Contato
+
 				Contato contato = new Contato();
 				contato.setId(rs.getLong("id"));
 				contato.setNome(rs.getString("nome"));
 				contato.setEmail(rs.getString("email"));
 				contato.setEndereco(rs.getString("endereco"));
 
-				// montando a data atrav�s do Calendar
+
 				Calendar data = Calendar.getInstance();
 				data.setTime(rs.getDate("dataNascimento"));
 				contato.setDataNascimento(data);
 
-				// adicionando o objeto � lista
+
 				result.add(contato);
 			}
 			rs.close();
@@ -76,7 +76,7 @@ public class ContatoDAO {
 	}
 
 	public boolean alterar(Contato contato) {
-		String sql = "update Contato set nome=?, email=?, endereco=?, dataNascimento=? where id=?;";
+		String sql = "update contatos set nome=?, email=?, endereco=?, dataNascimento=? where id=?;";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, contato.getNome());
@@ -95,7 +95,7 @@ public class ContatoDAO {
 
 	public boolean remover(Contato contato) {
 		try {
-			PreparedStatement stmt = connection.prepareStatement("delete from Contato where id=?;");
+			PreparedStatement stmt = connection.prepareStatement("delete from contatos where id=?;");
 			stmt.setLong(1, contato.getId());
 			stmt.execute();
 			stmt.close();
@@ -110,19 +110,19 @@ public class ContatoDAO {
 		Contato result = null;
 
 		try {
-			PreparedStatement stmt = this.connection.prepareStatement("select * from Contato where id = ?;");
+			PreparedStatement stmt = this.connection.prepareStatement("select * from contatos where id = ?;");
 			stmt.setLong(1, id);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				// criando o objeto Contato
+
 				result = new Contato();
 				result.setId(rs.getLong("id"));
 				result.setNome(rs.getString("nome"));
 				result.setEmail(rs.getString("email"));
 				result.setEndereco(rs.getString("endereco"));
 
-				// montando a data atrav�s do Calendar
+
 				Calendar data = Calendar.getInstance();
 				data.setTime(rs.getDate("dataNascimento"));
 				result.setDataNascimento(data);
@@ -135,5 +135,5 @@ public class ContatoDAO {
 
 		return result;
 	}
-
+	
 }
