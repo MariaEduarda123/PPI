@@ -12,15 +12,16 @@ import daos.ContatoDAO;
 import models.Contato;
 
 @Controller
+@RequestMapping("/contatos")
 public class ContatoController {
 
-	@RequestMapping("/contatos/form")
+	@RequestMapping("/form")
 	public String form() {
 		System.out.println("Chamou o form de contatos");
 		return "contatos/form";
 	}
 	
-	@PostMapping("/contatos")
+	@PostMapping
 	public String adicionar(Contato contato) {
 		System.out.println(contato);
 		ContatoDAO contatoDAO = new ContatoDAO();
@@ -29,7 +30,7 @@ public class ContatoController {
 		return "redirect:contatos";
 	}
 	
-	@GetMapping("/contatos")
+	@GetMapping
 	public ModelAndView listar() {
 		ContatoDAO contatoDAO = new ContatoDAO();
 		List<Contato> lista = contatoDAO.getLista();
