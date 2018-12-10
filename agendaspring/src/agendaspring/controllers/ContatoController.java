@@ -18,6 +18,7 @@ public class ContatoController {
 	@RequestMapping("/form")
 	public String form() {
 		System.out.println("Chamou o form de contatos");
+		
 		return "contatos/form";
 	}
 	
@@ -36,16 +37,39 @@ public class ContatoController {
 		List<Contato> lista = contatoDAO.getLista();
 		ModelAndView model = new ModelAndView("contatos/lista");
 		model.addObject("contatos", lista);
-
+		
 		return model;
 	}
 	
-	@RequestMapping("/contatos/remover")
-	public ModelAndView remover(Contato contato) {
+	@RequestMapping("/remover")
+	public String remover(Contato contato) {
 		System.out.println("chamou o método remover");
 		ContatoDAO contatoDAO = new ContatoDAO();
 		contatoDAO.remover(contato);
 		
-		return listar();
+		return "redirect:/contatos";
 	}
+	
+	@RequestMapping("/selecionar")
+	public ModelAndView selecionar (Contato contato) {
+		System.out.println("chamou o método selecionar");
+		ContatoDAO contatoDAO = new ContatoDAO();
+		contato = contatoDAO.getById(contato.getId());
+		
+		ModelAndView model = new ModelAndView("contatos/form-alterar");
+		model.addObject("contato", contato);
+		
+		return model;
+	}
+	
+	@PostMapping("/alterar")
+	public String alterar(Contato contato) {
+		System.out.println("chamou o método alterar");
+		System.out.println(contato);
+		ContatoDAO contatoDAO = new ContatoDAO();
+		contatoDAO.alterar(contato);
+		
+		return "redirect:/contatos";
+	}
+	
 }
